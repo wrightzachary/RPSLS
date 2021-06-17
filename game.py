@@ -1,14 +1,18 @@
 from human import Human
 from computer import Computer
 
+
 class Game:
     def __init__(self):
-        self.player_one = Human("Zach")
-        self.player_two = Human("Alec")
+        self.player_one = Human("Player 1")
+        self.player_two = Human("Player 2")
 
     def run_game(self):
         self.display_welcome()
         self.choose_game_mode()
+        self.player_one_turn()
+        self.player_two_turn()
+        self.determining_round_winner()
         self.rounds()
         # player one chooses gesture
         # player two chooses gesture
@@ -34,7 +38,7 @@ class Game:
     def choose_game_mode(self):
         number_of_players = input("How many Players?")
         if number_of_players == 2:
-            self.player_two = Human("Alec")
+            self.player_two = Human("Player 2")
         else:
             self.player_two = Computer()
 
@@ -43,13 +47,19 @@ class Game:
     #     self.player_two = player_two
 
     def rounds(self):
-         pass
+        pass
 
     def player_one_turn(self):
-        pass
+        choose_gesture = input("Player 1: Choose your gesture")
 
     def player_two_turn(self):
-        pass
+        choose_gesture = input("Player 2: Choose your gesture")
+
+    def determining_round_winner(self):
+        if self.player_one_turn == self.player_two_turn:
+            print("Round Tie!")
+        # else:
+        #     print("Winner!")
 
     def computer_turn(self):
         pass
