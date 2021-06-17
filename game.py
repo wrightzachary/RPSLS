@@ -13,7 +13,6 @@ class Game:
         self.player_one_turn()
         self.player_two_turn()
         self.determining_round_winner()
-        self.rounds()
         # player one chooses gesture
         # player two chooses gesture
         # determine winner, score increases for winner
@@ -42,30 +41,41 @@ class Game:
         else:
             self.player_two = Computer()
 
-    # def players(self, player_one, player_two):
-    #     self.player_one = player_one
-    #     self.player_two = player_two
-
-    def rounds(self):
-        pass
+    def players(self, player_one, player_two):
+        self.player_one = player_one
+        self.player_two = player_two
 
     def player_one_turn(self):
-        choose_gesture = input("Player 1: Choose your gesture")
+        print("Enter your gesture:")
+        self.player_one.chosen_gesture = input()
 
     def player_two_turn(self):
-        choose_gesture = input("Player 2: Choose your gesture")
+        print("Enter your gesture:")
+        self.player_two.chosen_gesture = input()
 
     def determining_round_winner(self):
-        if self.player_one_turn == self.player_two_turn:
-            print("Round Tie!")
-        # else:
-        #     print("Winner!")
+        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+            print("Round tie!")
+        elif self.player_one.chosen_gesture == "rock":
+            if self.player_two.chosen_gesture == "scissors":
+                print("Player_one wins! Rock breaks Scissors")
+            else:
+                print("Player_two wins!")
+
+        # elif self.player_one_turn == "paper":
+        #     if self.player_two_turn == "rock":
+        #         print("Player_one wins!Paper covers Rock!")
+        #     else:
+        #         print("Player_two wins!")
+        #
+        # elif self.player_one_turn == "scissors":
+        #     if self.player_two_turn == "paper":
+        #         print("Player_one wins! Scissors cut Paper!")
+        #     else:
+        #         print("player_two wins!")
 
     def computer_turn(self):
         pass
 
     def display_winner(self):
         print("We have a winner!")
-
-    def player(self):
-        pass
