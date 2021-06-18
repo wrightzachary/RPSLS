@@ -4,21 +4,20 @@ from computer import Computer
 
 class Game:
     def __init__(self):
+        self.computer = Computer()
         self.player_one = Human("Player 1")
         self.player_two = Human("Player 2")
-
-    def run_game(self):
         self.display_welcome()
         self.choose_game_mode()
+
+    def run_game(self):
         self.player_one_turn()
         self.player_two_turn()
         self.determining_round_winner()
-        # player one chooses gesture
-        # player two chooses gesture
-        # determine winner, score increases for winner
+        #  score increases for winner
         # loop to continue gameplay for best out of 3
         self.display_winner()
-        # prompt to play again - not mvp
+        self.game_over()
 
     def display_welcome(self):
         print("Welcome to RPSLS!")
@@ -40,22 +39,26 @@ class Game:
         print('')
 
     def choose_game_mode(self):
-        number_of_players = input("How many players?")
-        if number_of_players == 2:
-            self.player_two = Human("Player 2")
+        print("How many players?")
+        number_of_players = input()
+        # if number_of_players == 2:
+        #     self.player_two = Human("Player 2")
+        if number_of_players == 1:
+            self.player_two = Computer()
         else:
             self.player_two = Computer()
 
-    def players(self, player_one, player_two):
+    def players(self, player_one, computer, player_two):
         self.player_one = player_one
+        self.computer = computer
         self.player_two = player_two
 
     def player_one_turn(self):
-        print("Enter your gesture:")
+        print("Player one, enter your gesture:")
         self.player_one.chosen_gesture = input()
 
     def player_two_turn(self):
-        print("Enter your gesture:")
+        print("Player two, enter your gesture:")
         self.player_two.chosen_gesture = input()
 
     def determining_round_winner(self):
@@ -132,6 +135,13 @@ class Game:
             else:
                 print("player_two wins!")
             return
+
+    def game_over(self):
+        user_choice = input("Do you want to play again? (y/n)")
+        if user_choice in ["Y", "y", "yes", "Yes"]:
+            self.run_game()
+        if user_choice in ["N", "n", "no", "No"]:
+            print("See you again!")
 
     def computer_turn(self):
         pass
