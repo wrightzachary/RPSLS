@@ -16,7 +16,6 @@ class Game:
         self.determining_round_winner()
         #  score increases for winner
         # loop to continue gameplay for best out of 3
-        self.display_winner()
         self.game_over()
 
     def display_welcome(self):
@@ -145,6 +144,3 @@ class Game:
 
     def computer_turn(self):
         pass
-
-    def display_winner(self):
-        print("We have a winner!")
