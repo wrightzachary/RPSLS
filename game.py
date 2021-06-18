@@ -1,5 +1,7 @@
 from human import Human
 from computer import Computer
+player_one_score = 0
+player_two_score = 0
 
 
 class Game:
@@ -14,6 +16,7 @@ class Game:
         self.player_one_turn()
         self.player_two_turn()
         self.determining_round_winner()
+        self.display_scoreboard()
         #  score increases for winner
         # loop to continue gameplay for best out of 3
         self.game_over()
@@ -61,6 +64,8 @@ class Game:
         self.player_two.chosen_gesture = input()
 
     def determining_round_winner(self):
+        global player_one_score
+        global player_two_score
         while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Round tie!")
             return
@@ -68,72 +73,96 @@ class Game:
         while self.player_one.chosen_gesture == "rock":
             if self.player_two.chosen_gesture == "scissors":
                 print("Player_one wins! Rock breaks Scissors")
+                player_one_score += 1
             else:
                 print("Player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "paper":
             if self.player_two_turn == "rock":
                 print("Player_one wins! Paper covers Rock!")
+                player_one_score += 1
             else:
                 print("Player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "scissors":
             if self.player_two_turn == "paper":
                 print("Player_one wins! Scissors cut Paper!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "rock":
             if self.player_two_turn == "lizard":
                 print("Player_one wins! Rock crushes Lizard!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "lizard":
             if self.player_two_turn != "spock":
-                print("player_two wins!")
+                print("player_one wins! Lizard poisons Spock!")
+                player_one_score += 1
             else:
-                print("Player_one wins! Lizard poisons Spock!")
+                print("Player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "spock":
             if self.player_two_turn == "scissors":
                 print("Player_one wins! Spock smashes Scissors!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "scissors":
             if self.player_two_turn == "lizard":
                 print("Player_one wins! Scissors decapitates lizard!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "lizard":
             if self.player_two_turn == "paper":
                 print("Player_one wins! Lizard eats Paper!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "paper":
             if self.player_two_turn == "spock":
                 print("Player_one wins! paper disproves Spock!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
 
         while self.player_one_turn == "spock":
             if self.player_two_turn == "rock":
                 print("Player_one wins! Spock vaporizes Rock!")
+                player_one_score += 1
             else:
                 print("player_two wins!")
+                player_two_score += 1
             return
+
+    def display_scoreboard(self):
+        print(f"player_one score: {player_one_score}")
+        print(f"player_two score: {player_two_score}")
 
     def game_over(self):
         user_choice = input("Do you want to play again? (y/n)")
