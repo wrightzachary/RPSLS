@@ -22,20 +22,25 @@ class Game:
 
     def display_welcome(self):
         print("Welcome to RPSLS!")
-        print("Instructions")
-        print("Rock crushes Scissors, "
-              f"Scissors cuts Paper, "
-              f"Paper covers Rock, "
-              f"Rock crushes Lizard")
-        print("Lizard poisons Spock, "
-              f"Spock smashes Scissors, "
-              f"Scissors decapitates Lizard")
-        print("Lizard eats Paper, "
-              f"Paper disproves Spock, "
-              f"Spock vaporizes Rock")
+        print('')
+        print("Instructions:")
+        print("Pick a gesture! Gesture options are: Rock, Paper, Scissors, Lizard, Spock")
+        print('')
+        print("Rules are: ")
+        print("Rock crushes Scissors")
+        print("Scissors cuts Paper")
+        print("Paper covers Rock")
+        print("Rock crushes Lizard")
+        print("Lizard poisons Spock")
+        print("Spock smashes Scissors")
+        print("Scissors decapitates Lizard")
+        print("Lizard eats Paper")
+        print("Paper disproves Spock")
+        print("Spock vaporizes Rock")
+        print('')
 
     def choose_game_mode(self):
-        number_of_players = input("How many Players?")
+        number_of_players = input("How many players?")
         if number_of_players == 2:
             self.player_two = Human("Player 2")
         else:
@@ -54,25 +59,79 @@ class Game:
         self.player_two.chosen_gesture = input()
 
     def determining_round_winner(self):
-        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+        while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Round tie!")
-        elif self.player_one.chosen_gesture == "rock":
+            return
+
+        while self.player_one.chosen_gesture == "rock":
             if self.player_two.chosen_gesture == "scissors":
                 print("Player_one wins! Rock breaks Scissors")
             else:
                 print("Player_two wins!")
+            return
 
-        # elif self.player_one_turn == "paper":
-        #     if self.player_two_turn == "rock":
-        #         print("Player_one wins!Paper covers Rock!")
-        #     else:
-        #         print("Player_two wins!")
-        #
-        # elif self.player_one_turn == "scissors":
-        #     if self.player_two_turn == "paper":
-        #         print("Player_one wins! Scissors cut Paper!")
-        #     else:
-        #         print("player_two wins!")
+        while self.player_one_turn == "paper":
+            if self.player_two_turn == "rock":
+                print("Player_one wins! Paper covers Rock!")
+            else:
+                print("Player_two wins!")
+            return
+
+        while self.player_one_turn == "scissors":
+            if self.player_two_turn == "paper":
+                print("Player_one wins! Scissors cut Paper!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "rock":
+            if self.player_two_turn == "lizard":
+                print("Player_one wins! Rock crushes Lizard!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "lizard":
+            if self.player_two_turn != "spock":
+                print("player_two wins!")
+            else:
+                print("Player_one wins! Lizard poisons Spock!")
+            return
+
+        while self.player_one_turn == "spock":
+            if self.player_two_turn == "scissors":
+                print("Player_one wins! Spock smashes Scissors!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "scissors":
+            if self.player_two_turn == "lizard":
+                print("Player_one wins! Scissors decapitates lizard!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "lizard":
+            if self.player_two_turn == "paper":
+                print("Player_one wins! Lizard eats Paper!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "paper":
+            if self.player_two_turn == "spock":
+                print("Player_one wins! paper disproves Spock!")
+            else:
+                print("player_two wins!")
+            return
+
+        while self.player_one_turn == "spock":
+            if self.player_two_turn == "rock":
+                print("Player_one wins! Spock vaporizes Rock!")
+            else:
+                print("player_two wins!")
+            return
 
     def computer_turn(self):
         pass
