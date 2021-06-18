@@ -17,6 +17,7 @@ class Game:
         self.player_two_turn()
         self.determining_round_winner()
         self.display_scoreboard()
+        self.check_if_game_winner()
         #  score increases for winner
         # loop to continue gameplay for best out of 3
         self.game_over()
@@ -161,8 +162,16 @@ class Game:
             return
 
     def display_scoreboard(self):
-        print(f"player_one score: {player_one_score}")
+        print(f"Player_one score: {player_one_score}")
         print(f"player_two score: {player_two_score}")
+
+    def check_if_game_winner(self):
+        global player_one_score
+        global player_two_score
+        if player_one_score == 2:
+            print("Player_one wins the game!")
+        elif player_two_score == 2:
+            print("Player_two wins the game!")
 
     def game_over(self):
         user_choice = input("Do you want to play again? (y/n)")
