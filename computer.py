@@ -1,13 +1,12 @@
 import random
 from player import Player
 
-n = 1
-
 
 class Computer(Player):
     def __init__(self):
         super().__init__(Player)
 
-    def choose_gesture(self):
-        for i in range(n):
-            print(random.choice(self.gestures), end=" ")
+    def get_random_gesture(self, player_name):
+        random_number = random.randint(0, 5)
+        random_gesture = self.gestures[random_number]
+        print(f'{player_name} chose {random_gesture}')
