@@ -1,4 +1,4 @@
-from human import Human
+from player import Player
 from computer import Computer
 player_one_score = 0
 player_two_score = 0
@@ -6,24 +6,21 @@ player_two_score = 0
 
 class Game:
     def __init__(self):
-        self.player_one = Human("Player 1")
-        self.player_two = Human("Player 2")
+        self.player_one = Player("Player 1")
+        self.player_two = Player("Player 2")
         self.computer = Computer()
         self.display_welcome()
         self.choose_game_mode()
-        self.set_player_name()
-
+        self.set_player_one_name()
+        self.set_player_two_name()
 
     def run_game(self):
         self.player_one_turn()
         self.player_two_turn()
+        self.computer_turn()
         self.determining_round_winner()
         self.display_scoreboard()
         self.check_if_game_winner()
-        self.game_over()
-        #  score increases for winner
-        # loop to continue gameplay for best out of 3
-        self.game_over()
 
     def display_welcome(self):
         print("Welcome to RPSLS!")
@@ -45,147 +42,80 @@ class Game:
         print('')
 
     def choose_game_mode(self):
-        print("Please choose Player vs Player or Player vs Computer. Type 1 for single player or 2 for multiplayer")
-        game_type = input()
+        game_type = input("Type 1 for single player or 2 for multiplayer")
         return game_type
 
-    def players(self, player_one, computer, player_two):
-        self.player_one = player_one
-        self.computer = computer
-        self.player_two = player_two
+    def set_player_one_name(self):
+        self.name = input("Player one, please enter a name")
+        print(f'Hello, {self.name}!')
+        return self.name
 
-    def set_player_name(self):
-        name = input("Please enter a name")
-        print(f'Hello, {name}!')
-        return name
+    def set_player_two_name(self):
+        self.name2 = input("Player two, please enter a name")
+        print(f'Hello, {self.name2}!')
+        return self.name2
 
     def player_one_turn(self):
-        print("Player one, enter your gesture:")
-        self.player_one.chosen_gesture = input()
+        self.player_one.chosen_gesture = input(f'Enter your gesture, {self.name}')
 
     def player_two_turn(self):
-        print("Player two, enter your gesture:")
-        self.player_two.chosen_gesture = input()
+        self.player_two.chosen_gesture = input(f'Enter your gesture, {self.name2}')
 
     def computer_turn(self):
-        random_number = random.randint(0, 5)
-        self.random_gesture = gestures[random_number]
+        pass
 
     def determining_round_winner(self):
         global player_one_score
         global player_two_score
-        while self.player_one.chosen_gesture == self.player_two.chosen_gesture:
+        if self.player_one.chosen_gesture == self.player_two.chosen_gesture:
             print("Round tie!")
             return
-
-        while self.player_one.chosen_gesture == "rock":
-            if self.player_two.chosen_gesture == "scissors":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("Player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "paper":
-            if self.player_two_turn == "rock":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("Player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "scissors":
-            if self.player_two_turn == "paper":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "rock":
-            if self.player_two_turn == "lizard":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "lizard":
-            if self.player_two_turn != "spock":
-                print("player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("Player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "spock":
-            if self.player_two_turn == "scissors":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "scissors":
-            if self.player_two_turn == "lizard":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "lizard":
-            if self.player_two_turn == "paper":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "paper":
-            if self.player_two_turn == "spock":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
-
-        while self.player_one_turn == "spock":
-            if self.player_two_turn == "rock":
-                print("Player_one wins the round!")
-                player_one_score += 1
-            else:
-                print("player_two wins the round!")
-                player_two_score += 1
-            return
+        elif self.player_one.chosen_gesture == "rock" and self.player_two.chosen_gesture == "scissors":
+            print("Player_one wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "paper" and self.player_two_turn == "rock":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "scissors" and self.player_two_turn == "paper":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "rock" and self.player_two_turn == "lizard":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "lizard" and self.player_two_turn != "spock":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "spock" and self.player_two_turn == "scissors":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "scissors" and self.player_two_turn == "lizard":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "lizard" and self.player_two_turn == "paper":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "paper" and self.player_two_turn == "spock":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        elif self.player_one_turn == "spock" and self.player_two_turn == "rock":
+            print(f"{self.name} wins the round!")
+            player_one_score += 1
+        else:
+            print(f"{self.name2} wins the round!")
+            player_two_score += 1
+        return
 
     def display_scoreboard(self):
-        print(f"Player_one score: {player_one_score}")
-        print(f"player_two score: {player_two_score}")
+        print(f"{self.name}: {player_one_score}")
+        print(f"{self.name2}: {player_two_score}")
 
     def check_if_game_winner(self):
         global player_one_score
         global player_two_score
         if player_one_score == 2:
-            print("Player_one wins the game!")
+            print(f"{self.name} wins the game!")
         elif player_two_score == 2:
-            print("Player_two wins the game!")
+            print(f"{self.name2} wins the game!")
 
-    def game_over(self):
-        user_choice = input("Do you want to play again? (y/n)")
-        if user_choice in ["Y", "y", "yes", "Yes"]:
+        else:
             self.run_game()
-        if user_choice in ["N", "n", "no", "No"]:
-            self.end_game
-            print("See you again!")
-
-
