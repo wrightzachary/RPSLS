@@ -5,8 +5,8 @@ class Player:
         self.score = 0
         self.gestures = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
 
-    # def player_name(self):
-    #     input("Enter your name:")
+    def choose_gesture_player(self):
+        pass
 
-    def choose_gesture(self):
+    def show_gesture_options(self):
         pass
