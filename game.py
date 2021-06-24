@@ -62,7 +62,7 @@ class Game:
         self.player_two.chosen_gesture = input(f'Enter your gesture, {self.name2}')
 
     def computer_turn(self):
-        pass
+        Computer()
 
     def determining_round_winner(self):
         global player_one_score
