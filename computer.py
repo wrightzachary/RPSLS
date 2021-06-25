@@ -1,5 +1,5 @@
-import random
 from player import Player
+import random
 
 
 class Computer(Player):
@@ -12,6 +12,6 @@ class Computer(Player):
         self.name = "The Machine"
 
     def get_random_gesture(self, player_name):
-        random_number = random.randint(0, 5)
-        random_gesture = self.gestures[random_number]
-        print(f'{player_name} chose {random_gesture}')
+        random_gesture = random.randint(0, len(self.gestures)-1)
+        computer_gesture = self.gestures[random_gesture]
+        self.chosen_gesture = computer_gesture
