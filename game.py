@@ -9,12 +9,12 @@ class Game:
         self.player_one = Player("Player 1")
         self.player_two = Player("Player 2")
         self.computer = Computer()
+
+    def run_game(self):
         self.display_welcome()
         self.choose_game_mode()
         self.set_player_one_name()
         self.set_player_two_name()
-
-    def run_game(self):
         self.player_one_turn()
         self.player_two_turn()
         self.computer_turn()
