@@ -10,6 +10,5 @@ class Human(Player):
     def set_name(self):
         self.chosen_gesture = ""
 
-
     def choose_gesture(self):
         self.name - input("Enter your name")
