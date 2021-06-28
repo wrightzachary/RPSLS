@@ -97,6 +97,7 @@ class Game:
         else:
             print(f"{self.name_other} wins the round!")
             player_two_score += 1
+        self.display_scoreboard_multiplayer()
         return
 
     def game_logic_single_player(self):
@@ -139,6 +140,7 @@ class Game:
         else:
             print(f"The Machine wins the round!")
             computer_score += 1
+        self.display_scoreboard_single_player()
         return
 
     def best_out_of_three_multiplayer(self):
@@ -156,3 +158,11 @@ class Game:
                 print(f'{self.name} wins!')
             else:
                 print(f'The Machine wins!')
+
+    def display_scoreboard_multiplayer(self):
+        print(f"{self.name}: {player_one_score}")
+        print(f"{self.name_other}: {player_two_score}")
+
+    def display_scoreboard_single_player(self):
+        print(f"{self.name}: {player_one_score}")
+        print(f"The Machine: {computer_score}")
